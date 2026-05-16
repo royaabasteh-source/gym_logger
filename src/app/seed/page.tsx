@@ -12,6 +12,10 @@ export default function SeedPage() {
 
   const seedMovements = async () => {
     if (!user) return;
+    if (!db) {
+      setStatus("Firebase is not configured. Please check environment variables.");
+      return;
+    }
     setStatus("Seeding movements...");
     const batch = writeBatch(db);
     
@@ -34,6 +38,10 @@ export default function SeedPage() {
 
   const seedTemplates = async () => {
     if (!user) return;
+    if (!db) {
+      setStatus("Firebase is not configured. Please check environment variables.");
+      return;
+    }
     setStatus("Seeding templates...");
     const batch = writeBatch(db);
     
