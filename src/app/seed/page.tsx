@@ -17,6 +17,10 @@ export default function SeedPage() {
       return;
     }
     setStatus("Seeding movements...");
+    if (!db) {
+  setStatus("Firebase is not configured. Check your environment variables.");
+  return;
+}
     const batch = writeBatch(db);
     
     // Simple way to check if seeded
