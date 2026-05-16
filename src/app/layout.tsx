@@ -1,5 +1,6 @@
 ﻿import type { Metadata } from "next";
 import { AuthProvider } from "@/contexts/AuthContext";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Gym Logger",
@@ -15,7 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider>
-          {children}
+          <main style={{ padding: 24 }}>
+            {children}
+          </main>
         </AuthProvider>
       </body>
     </html>
