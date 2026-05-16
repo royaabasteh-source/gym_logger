@@ -3,6 +3,7 @@
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { LogIn, Sparkles, ShieldCheck, Zap, Activity } from "lucide-react";
 
 export default function LoginPage() {
   const { user, login, loading } = useAuth();
@@ -27,30 +28,77 @@ export default function LoginPage() {
   if (loading) return null;
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-[80vh] p-4 text-center animate-fade-in">
-      <div className="w-full max-w-sm p-8 bg-bg-secondary rounded-3xl card-depth shadow-card-shadow border border-border">
-        <h1 className="text-3xl font-black mb-2 tracking-tight">Gym Logger</h1>
-        <p className="text-text-secondary mb-8 leading-relaxed">
-          The minimal, mobile-first workout tracker for serious lifting.
-        </p>
-
-        {error && (
-          <div className="mb-6 p-4 text-sm text-danger bg-danger/10 border border-danger/30 rounded-xl animate-fade-in">
-            {error}
+    <div className="flex flex-col items-center justify-center min-h-[100vh] p-6 text-center animate-premium-in relative overflow-hidden bg-bg-primary">
+      {/* Background Architectural Glows */}
+      <div className="absolute top-[-10%] left-[-20%] w-[80vw] h-[80vw] bg-accent/10 blur-[150px] rounded-full z-0 opacity-40 animate-pulse" />
+      <div className="absolute bottom-[-20%] right-[-10%] w-[60vw] h-[60vw] bg-accent/5 blur-[120px] rounded-full z-0 opacity-30" />
+      
+      <div className="w-full max-w-sm space-y-12 relative z-10">
+        {/* Brand Logo Section */}
+        <div className="space-y-6">
+          <div className="mx-auto w-24 h-24 bg-accent rounded-[2.5rem] flex items-center justify-center shadow-[0_20px_40px_-10px_var(--accent-glow)] mb-10 rotate-6 group hover:rotate-0 transition-transform duration-500">
+            <Activity className="text-white w-12 h-12" strokeWidth={3} />
           </div>
-        )}
+          <div className="space-y-3">
+            <h1 className="text-7xl font-black tracking-tighter leading-[0.8] uppercase italic">
+              LIFT<span className="text-accent">LOG</span>
+            </h1>
+            <div className="flex items-center justify-center gap-2 text-accent font-black text-[10px] uppercase tracking-[0.5em] opacity-80">
+              <Zap size={12} fill="currentColor" />
+              <span>Precision Monitoring</span>
+            </div>
+          </div>
+          <p className="text-text-tertiary font-bold px-4 text-sm leading-relaxed max-w-[280px] mx-auto opacity-40 uppercase tracking-widest">
+            The professional grade interface for your training protocol.
+          </p>
+        </div>
 
-        <button
-          onClick={handleLogin}
-          className="flex w-full items-center justify-center gap-3 px-6 py-4 bg-accent text-white rounded-2xl font-bold active:scale-95 transition-all shadow-btn-shadow"
-        >
-          <GoogleIcon className="w-6 h-6 fill-current" />
-          <span>Sign in with Google</span>
-        </button>
+        {/* Authentication Card */}
+        <div className="p-10 card-premium glass-premium space-y-10 relative overflow-hidden border-white/5 shadow-2xl">
+          <div className="absolute top-0 left-0 w-full h-1 bg-accent/20" />
+          
+          <div className="space-y-3">
+            <div className="flex items-center justify-center gap-2 text-accent text-[10px] font-black uppercase tracking-[0.3em]">
+              <Sparkles size={14} className="animate-spin-slow" />
+              <span>Identity Verification</span>
+            </div>
+            <h2 className="text-3xl font-black tracking-tighter uppercase leading-none">Welcome Athlete</h2>
+          </div>
+
+          {error && (
+            <div className="p-5 text-[11px] font-black uppercase tracking-wider text-danger bg-danger/5 border border-danger/10 rounded-2xl animate-shake">
+              {error}
+            </div>
+          )}
+
+          <div className="space-y-4">
+            <button
+              onClick={handleLogin}
+              className="group relative flex w-full items-center justify-center gap-4 px-8 py-6 bg-white text-black rounded-[32px] font-black text-lg active:scale-95 transition-all shadow-[0_15px_30px_-5px_rgba(255,255,255,0.2)] hover:shadow-white/30 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              <GoogleIcon className="w-6 h-6 relative z-10 group-hover:invert transition-all duration-500" />
+              <span className="relative z-10 group-hover:text-white transition-colors duration-500 uppercase tracking-tight">Access Database</span>
+            </button>
+            
+            <div className="flex items-center gap-4 pt-4 opacity-20">
+              <div className="h-[1px] flex-1 bg-white" />
+              <ShieldCheck size={14} className="text-white" />
+              <div className="h-[1px] flex-1 bg-white" />
+            </div>
+          </div>
+
+          <p className="text-[9px] font-black text-text-tertiary uppercase tracking-[0.3em] leading-loose px-2 opacity-30">
+            By accessing the system, you accept our <span className="text-text-secondary border-b border-text-secondary/30">Protocol Terms</span> and <span className="text-text-secondary border-b border-text-secondary/30">Security Policy</span>.
+          </p>
+        </div>
         
-        <p className="mt-8 text-xs text-text-tertiary">
-          Gym Logger • Built with Next.js & Firebase
-        </p>
+        <div className="flex flex-col items-center gap-2 opacity-20">
+          <p className="text-[10px] font-black text-text-tertiary uppercase tracking-[0.6em]">
+            SYSTEM v1.2.4 // PRO
+          </p>
+          <div className="w-8 h-[1px] bg-text-tertiary" />
+        </div>
       </div>
     </div>
   );
